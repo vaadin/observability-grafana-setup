@@ -24,8 +24,6 @@ services:
       - "8090"
     volumes:
       - ./collector/collector.yaml:/etc/otelcol-contrib/config.yaml
-    depends_on:
-      - tempo
   prometheus:
     image: prom/prometheus:latest
     command:
@@ -36,8 +34,6 @@ services:
     volumes:
       - prometheus:/prometheus
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    depends_on:
-      - collector
   grafana:
     image: grafana/grafana-enterprise
     volumes:
@@ -49,9 +45,6 @@ services:
       GF_FEATURE_TOGGLES_ENABLE: "tempoApmTable"
     ports:
       - "3000:3000"
-    depends_on:
-      - tempo
-      - prometheus
 
 volumes:
   prometheus:
