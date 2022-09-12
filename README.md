@@ -16,6 +16,7 @@ The setup runs the OpenTelemetry Collector which exposes the following endpoints
 
 To configure the agent to send data to this setup, create an `agent.properties` file with the following contents:
 ```
+otel.service.name=vaadin
 otel.traces.exporter=otlp
 otel.metrics.exporter=otlp
 otel.logs.exporter=otlp
@@ -23,7 +24,7 @@ otel.logs.exporter=otlp
 
 Then start your Vaadin app together with the agent, for example:
 ```
-java -javaagent:path/to/vaadin-opentelemetry-javaagent-1.0.jar \
+java -javaagent:vaadin-opentelemetry-javaagent-1.0.jar \
      -Dotel.javaagent.configuration-file=agent.properties \
      -jar myapp.jar
 ```
